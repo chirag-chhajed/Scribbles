@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const http = require('http');
+const {createServer} = require('http');
 const cors = require('cors');
 const { Server } = require('socket.io');
 
@@ -10,7 +10,7 @@ app.use(cors({
   methods: ['GET','POST']
 })); // Add cors middleware
 
-const server = http.createServer(app); // Add this
+const server = createServer(app); // Add this
 
 // Create an io server and allow for CORS from http://localhost:3000 with GET and POST methods
 const io = new Server(server, {
@@ -22,12 +22,17 @@ const io = new Server(server, {
 
 // Listen for when the client connects via socket.io-client
 io.on('connection', (socket) => {
-  console.log(`User connected ${socket.id}`);
+  
+  console.log(`New connection from: ${socket.id}`);
   socket.on('join_room',(data) => {
-    console.log(data.data)
+    socket.join(data)
   })
-  socket.emit('server',`Hello from the server`)
-  socket.on('disconnect',()=>{console.log("user disconnected")})
+
+  socket.on("send_message",(data)=>{
+    socket.to(data.room).emit("receive_message",data)
+  })
+
+  
   
 });
 
