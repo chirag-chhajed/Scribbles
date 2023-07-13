@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "start": "node app/api/dist/main"
+    "start": "node app/api/dist/main.js"
   },
   "keywords": [],
   "author": "",
