@@ -2,8 +2,8 @@ import React from "react";
 import { Button } from "~/components/ui/button";
 import { GithubIcon } from "lucide-react";
 import {
+  GithubAuthProvider,
   GoogleAuthProvider,
-  getAdditionalUserInfo,
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "~/lib/firebase";
@@ -21,14 +21,24 @@ const LandingPage = () => {
       console.error(error);
     }
   };
+
+  const gitHubLogin = async () => {
+    const provider = new GithubAuthProvider();
+    try {
+      const res = await signInWithPopup(auth, provider);
+      console.log(res.user.displayName);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
-    <>
+    <div className="grid place-content-center">
       <h1 className="text-4xl font-bold text-red-500">
         Hello this is the landing page
       </h1>
       <Button
         onClick={() => void googleLogin()}
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        // className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
       >
         <svg
           className="mr-2 h-6 w-6"
@@ -40,7 +50,11 @@ const LandingPage = () => {
         </svg>
         Log in with Google
       </Button>
-    </>
+      <Button onClick={() => void gitHubLogin()}>
+        <GithubIcon className="mr-2" />
+        Log in with Github
+      </Button>
+    </div>
   );
 };
 
