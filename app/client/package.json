@@ -39,10 +39,7 @@
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.5.1",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5.1.6",
-    "sst": "^2.25.2",
-    "aws-cdk-lib": "2.95.1",
-    "constructs": "10.2.69"
+    "typescript": "^5.1.6"
   },
   "ct3aMetadata": {
     "initVersion": "7.20.2"

@@ -9,6 +9,7 @@ import { User } from './typeorm/entities/User';
 import { TestingFirebaseController } from './testing-firebase/testing-firebase.controller';
 import { TestingFirebaseGuard } from './testing-firebase/testing-firebase.guard';
 import { LoggerMiddleware } from './logger/logger.middleware';
+import { ChatsModule } from './chats/chats.module';
 // import * as path from 'path';
 @Module({
     imports: [
@@ -32,6 +33,7 @@ import { LoggerMiddleware } from './logger/logger.middleware';
                 projectId: firebaseConfig.project_id,
             },
         }),
+        ChatsModule,
     ],
     controllers: [AppController, TestingFirebaseController],
     providers: [AppService, TestingFirebaseGuard],
