@@ -27,20 +27,7 @@ async function bootstrap() {
     app.use(passport.session());
     app.enableCors();
     const trpc = app.get(TrpcRouter);
-    try {
-        admin.initializeApp({
-            credential: admin.credential.cert({
-                clientEmail: serviceAccountJson.client_email,
-                privateKey: serviceAccountJson.private_key,
-                projectId: serviceAccountJson.project_id,
-            }),
-            
 
-        });
-        console.log('Firebase admin initialized');
-    } catch (error) {
-        console.log(error);
-    }
     trpc.applyMiddleware(app);
     await app.listen(4000);
 }

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TrpcModule } from '@server/trpc/trpc.module';
@@ -9,6 +9,8 @@ import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './typeorm/entities/User';
 import { TestingFirebaseController } from './testing-firebase/testing-firebase.controller';
+import { TestingFirebaseGuard } from './testing-firebase/testing-firebase.guard';
+import { LoggerMiddleware } from './logger/logger.middleware';
 // import * as path from 'path';
 @Module({
     imports: [
@@ -36,6 +38,10 @@ import { TestingFirebaseController } from './testing-firebase/testing-firebase.c
         }),
     ],
     controllers: [AppController, TestingFirebaseController],
-    providers: [AppService],
+    providers: [AppService, TestingFirebaseGuard],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+    configure(consumer: MiddlewareConsumer) {
+        consumer.apply(LoggerMiddleware).forRoutes('*');
+    }
+}
