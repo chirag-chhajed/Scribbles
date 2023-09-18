@@ -27,6 +27,7 @@ const LandingPage = () => {
     try {
       const res = await signInWithPopup(auth, provider);
       console.log(res.user.displayName);
+      void router.push("/protected/hello");
     } catch (error) {
       console.error(error);
     }
