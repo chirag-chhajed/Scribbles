@@ -32,8 +32,8 @@ const LandingPage = () => {
     }
   };
   return (
-    <div className="grid place-content-center">
-      <h1 className="text-4xl font-bold text-red-500">
+    <div className="flex h-screen flex-col place-content-center items-center justify-center gap-4 bg-slate-400">
+      <h1 className="text-4xl font-bold text-slate-800">
         Hello this is the landing page
       </h1>
       <Button

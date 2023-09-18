@@ -7,7 +7,10 @@ const Index = () => {
   const router = useRouter();
 
   return (
-    <div>
+    <div className="flex h-screen flex-col place-content-center items-center justify-center gap-4 bg-slate-400">
+      <h1 className="text-4xl font-bold text-slate-800">
+        This is an example of a protected page
+      </h1>
       <Button
         onClick={() => {
           void signOut(auth);
@@ -16,7 +19,6 @@ const Index = () => {
       >
         Sign Out
       </Button>
-      hello
     </div>
   );
 };
