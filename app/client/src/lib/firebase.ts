@@ -28,11 +28,19 @@ if (firebase.getApps().length === 0) {
 }
 
 export const auth: Auth = getAuth(app);
-export const analytics: Promise<void | Analytics> = isSupported().then(
-  (yes) => {
-    console.log(yes);
-    return yes ? getAnalytics(app) : console.log("Analytics not supported");
-  },
-);
+// export const analytics: Promise<void | Analytics> = isSupported().then(
+//   (yes) => {
+//     console.log(yes);
+//     return yes ? getAnalytics(app) : console.log("Analytics not supported");
+//   },
+// );
+export const analytics = () => {
+  if (typeof window !== undefined) {
+    return getAnalytics(app);
+  } else {
+    console.log("Analytics not supported");
+    return null;
+  }
+};
 
 export default app;
