@@ -1,5 +1,5 @@
 import { Controller, Get, Inject } from '@nestjs/common';
-import { AppService } from '@/app.service';
+import { AppService } from './app.service';
 import * as schema from './drizzle/schema';
 import { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 
