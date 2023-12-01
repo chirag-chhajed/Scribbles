@@ -10,7 +10,8 @@
     "build:server": "pnpm --filter=server build",
     "build:client": "pnpm --filter=client build",
     "start:server": "pnpm --filter=server start:prod",
-    "start:client": "pnpm --filter=client start"
+    "start:client": "pnpm --filter=client start",
+    "build": "pnpm run --parallel build"
   },
   "keywords": [],
   "author": "",

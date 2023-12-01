@@ -6,7 +6,6 @@ import {
     UnauthorizedException,
 } from '@nestjs/common';
 import { FirebaseAdmin, InjectFirebaseAdmin } from 'nestjs-firebase';
-import { Observable } from 'rxjs';
 
 @Injectable()
 @Injectable()
@@ -28,6 +27,7 @@ export class TestingFirebaseGuard implements CanActivate {
             const decodedToken = await this.firebaseAdmin.auth.verifyIdToken(
                 token,
             );
+
             const uid = decodedToken.uid;
             this.logger.debug(`uid:`, uid);
             return true; // User is authenticated

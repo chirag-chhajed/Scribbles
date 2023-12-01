@@ -11,13 +11,25 @@ import { ChatsService } from './chats.service';
 import { Server, Socket } from 'socket.io';
 import { Logger, OnModuleInit } from '@nestjs/common';
 
-@WebSocketGateway({ namespace: 'chats' })
+@WebSocketGateway({ namespace: 'chats', cors: true })
 export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     constructor(private readonly chatsService: ChatsService) {}
     private readonly logger = new Logger(ChatsGateway.name);
 
     @WebSocketServer()
     private readonly server: Server;
+
+    room = new Map();
+
+    getRoomIdBySocket(socket: Socket): string | undefined {
+        // Iterate through your room mappings and find the room ID associated with the socket
+        for (const [roomId, roomData] of this.room.entries()) {
+            if (roomData.users.includes(socket.id)) {
+                return roomId;
+            }
+        }
+        return undefined; // Return undefined if no room is found
+    }
 
     handleConnection(client: Socket) {
         this.logger.debug(`Client ${client.id} connected`);

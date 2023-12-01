@@ -1,25 +1,26 @@
 {
-    "extends": "../../tsconfig.json", // Extend the config options from the root
     "compilerOptions": {
-        // The following options are not required as they've been moved to the root tsconfig
-        // "baseUrl": "./",
-        // "emitDecoratorMetadata": true,
-        // "experimentalDecorators": true,
-        // "incremental": true,
-        // "skipLibCheck": true,
-        // "strictNullChecks": true,
-        // "noImplicitAny": true,
-        // "strictBindCallApply": true,
-        // "forceConsistentCasingInFileNames": true,
-        // "noFallthroughCasesInSwitch": true
         "module": "commonjs",
         "declaration": true,
         "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
-        "target": "es2017",
+        "target": "ES2021",
         "sourceMap": true,
         "outDir": "./dist",
-        "resolveJsonModule": true
-    },
-    "include": ["src"]
+        "baseUrl": "./",
+        "incremental": true,
+        "skipLibCheck": true,
+        "strictNullChecks": false,
+        "noImplicitAny": false,
+        "strictBindCallApply": false,
+        "forceConsistentCasingInFileNames": false,
+        "noFallthroughCasesInSwitch": false,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    }
 }
