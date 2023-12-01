@@ -1,10 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+"use client";
 import { type User, onAuthStateChanged } from "firebase/auth";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { updateValue } from "store/features/user";
-import { auth } from "~/lib/firebase";
+import { updateValue } from "@/store/features/user";
+import { auth } from "@/lib/firebase";
 
 const AuthComponent = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -19,14 +19,15 @@ const AuthComponent = ({ children }: { children: React.ReactNode }) => {
             (user) => {
               resolve(user);
             },
-            reject,
+            reject
           );
         });
 
         if (user) {
           const token = (await user.getIdTokenResult()).token;
           dispatch(updateValue(token));
-          void router.push("/protected/hello");
+          console.log("user logged in");
+          //   void router.push("/protected/hello");
         } else {
           console.log("user is logged out");
         }

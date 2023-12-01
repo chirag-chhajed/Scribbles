@@ -1,3 +1,4 @@
+"use client";
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 // create a slice of state in typescript

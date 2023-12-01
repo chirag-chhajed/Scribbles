@@ -1,6 +1,6 @@
 import { type FirebaseApp, initializeApp } from "firebase/app";
 import { type Auth, getAuth } from "firebase/auth";
-import { getAnalytics, type Analytics, isSupported } from "firebase/analytics";
+import { getAnalytics } from "firebase/analytics";
 import * as firebase from "firebase/app";
 
 // console.log(process.env.NEXT_PUBLIC_MEASUREMENT_ID);

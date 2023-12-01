@@ -1,6 +1,7 @@
+"use client";
 import { configureStore } from "@reduxjs/toolkit";
-import { helloSlice } from "./features/hello";
-import { userSlice } from "./features/user";
+import { helloSlice } from "@/store/features/hello";
+import { userSlice } from "@/store/features/user";
 
 const store = configureStore({
   reducer: {

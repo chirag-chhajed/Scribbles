@@ -1,3 +1,4 @@
+"use client";
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export const userSlice = createSlice({
