@@ -20,7 +20,6 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@knaadh/nestjs-drizzle-better-sqlite3": "^1.0.1",
     "@knaadh/nestjs-drizzle-postgres": "^1.0.0",
     "@nestjs/common": "^10.2.10",
     "@nestjs/config": "^3.1.1",
@@ -29,7 +28,6 @@
     "@nestjs/platform-express": "^10.2.10",
     "@nestjs/platform-socket.io": "^10.2.10",
     "@nestjs/websockets": "^10.2.10",
-    "better-sqlite3": "^9.1.1",
     "drizzle-orm": "^0.29.1",
     "firebase-admin": "^11.11.1",
     "nestjs-firebase": "^10.3.0",

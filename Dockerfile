@@ -1,31 +1,26 @@
-FROM node:20-alpine
+FROM node:20-slim 
 
-# Install global dependencies
 RUN npm install -g pnpm
 
-# Set a build argument for environment
-ARG NODE_ENV=production
+COPY . /usr/src/
 
-# Set the working directory
-WORKDIR /usr/src
+WORKDIR /usr/src/
 
-# Copy package files
-COPY package.json .
-COPY pnpm-*.yaml .
-COPY app/client/package.json app/client/package.json
-COPY app/server/package.json app/server/package.json
+# RUN --mount=type=cache,id=pnpm,target=/pnpm/store CI=true pnpm i --frozen-lockfile
 
-# Install dependencies
-RUN pnpm install
+RUN if [ -z "$arg" ]; then \
+    CI=true pnpm i --frozen-lockfile; \
+    else \
+    --mount=type=cache,id=pnpm,target=/pnpm/store pnpm i --frozen-lockfile; \
+    fi
 
-# Copy the rest of the application files
-COPY . .
 
-# Run build only if NODE_ENV is set to production
-RUN if [ "$NODE_ENV" = "production" ]; then pnpm build; fi
+RUN if [ -z "$arg" ]; then \
+    pnpm run build; \
+    else \
+    echo "Argument is $arg"; \
+    fi
 
-# Expose ports
 EXPOSE 3000 4000
 
-# Start the application
-CMD ["pnpm", "start"]
+CMD [ "pnpm","start" ]

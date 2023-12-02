@@ -12,7 +12,7 @@
     "start": "pnpm run --parallel start",
     "start:server": "pnpm --filter=server start",
     "start:client": "pnpm --filter=client start",
-    "build": "pnpm run --parallel build"
+    "build": "pnpm --parallel build"
   },
   "keywords": [],
   "author": "",

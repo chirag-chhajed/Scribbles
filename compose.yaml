@@ -15,7 +15,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        - NODE_ENV=development
+        - arg="development"
     ports:
       - "3000:3000"
       - "4000:4000"
@@ -25,8 +25,7 @@ services:
       - doodlebattle-db
     command: ["pnpm", "dev"]
     volumes:
-      - my-app:/usr/src/
+      - .:/usr/src/
 
 volumes:
   postgres-data:
-  my-app:

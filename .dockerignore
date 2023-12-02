@@ -1,8 +1,13 @@
-/node_modules
-app/client/node_modules/
-app/client/.next/
-app/client/out/
-app/server/node_modules
-app/**/dist/
-Dockerfile
-.dockerignore
+# /**/*/.env
+# /**/*/.env.*
+/**/*/README.md
+/**/*/.git
+/**/*/.gitignore
+/**/*/npm-debug.log
+/**/*/.dockerignore
+/**/*/Dockerfile
+
+# Directories
+/**/*/node_modules
+/**/*/test
+/**/*/dist
