@@ -26,7 +26,7 @@ import { DrizzlePostgresModule } from '@knaadh/nestjs-drizzle-postgres';
         DrizzlePostgresModule.register({
             tag: 'DB_DEV',
             postgres: {
-                url: 'postgres://postgres:94justchat@localhost:5432/doodle_battle',
+                url: process.env.DATABASE_URL,
             },
         }),
     ],

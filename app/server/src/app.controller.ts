@@ -32,8 +32,8 @@ export class AppController {
                 name: generateRandomString(10),
                 email: generateRandomString(20),
             })
-            .then(() => console.log('created'))
-            .catch((err) => console.error(err, 'error'));
+            .then(() => console.log('created'));
+        // .catch((err) => console.error(err, 'error'));
         return this.appService.getHello();
     }
 }

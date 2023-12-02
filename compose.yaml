@@ -24,6 +24,9 @@ services:
     depends_on:
       - doodlebattle-db
     command: ["pnpm", "dev"]
+    volumes:
+      - my-app:/usr/src/
 
 volumes:
   postgres-data:
+  my-app:

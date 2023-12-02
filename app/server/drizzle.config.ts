@@ -5,7 +5,6 @@ export default {
     out: './drizzle',
     driver: 'pg',
     dbCredentials: {
-        connectionString:
-            'postgres://postgres:94justchat@localhost:5432/doodle_battle',
+        connectionString: process.env.DATABASE_URL,
     },
 } satisfies Config;
