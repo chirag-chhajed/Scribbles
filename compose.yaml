@@ -1,0 +1,32 @@
+services:
+  doodlebattle-db:
+    image: postgres:14.10
+    environment:
+      POSTGRES_DB: doodle_battle
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 94justchat
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  doodlebattle-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=development
+    ports:
+      - "3000:3000"
+      - "4000:4000"
+    environment:
+      DATABASE_URL: "postgres://postgres:94justchat@doodlebattle-db:5432/doodle_battle"
+    depends_on:
+      - doodlebattle-db
+    command: ["pnpm", "dev"]
+    volumes:
+      - my-app:/usr/src/
+
+volumes:
+  postgres-data:
+  my-app:

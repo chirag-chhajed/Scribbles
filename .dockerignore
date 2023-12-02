@@ -1,0 +1,8 @@
+/node_modules
+app/client/node_modules/
+app/client/.next/
+app/client/out/
+app/server/node_modules
+app/**/dist/
+Dockerfile
+.dockerignore
