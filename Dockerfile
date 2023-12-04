@@ -1,26 +1,25 @@
-FROM node:20-slim 
+FROM node:20-slim AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
-RUN npm install -g pnpm
+FROM base AS build
+COPY . /usr/src/app
+WORKDIR /usr/src/app
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm deploy --filter=client  /prod/client
+RUN pnpm deploy --filter=server  /prod/server
 
-COPY . /usr/src/
+FROM base AS client
+COPY --from=build /prod/client /prod/client
+WORKDIR /prod/client
+RUN pnpm build
+EXPOSE 3000
+CMD [ "pnpm", "start" ]
 
-WORKDIR /usr/src/
-
-# RUN --mount=type=cache,id=pnpm,target=/pnpm/store CI=true pnpm i --frozen-lockfile
-
-RUN if [ -z "$arg" ]; then \
-    CI=true pnpm i --frozen-lockfile; \
-    else \
-    --mount=type=cache,id=pnpm,target=/pnpm/store pnpm i --frozen-lockfile; \
-    fi
-
-
-RUN if [ -z "$arg" ]; then \
-    pnpm run build; \
-    else \
-    echo "Argument is $arg"; \
-    fi
-
-EXPOSE 3000 4000
-
-CMD [ "pnpm","start" ]
+FROM base AS server
+COPY --from=build /prod/server /prod/server
+WORKDIR /prod/server
+RUN pnpm build
+EXPOSE 4000
+CMD [ "pnpm", "start" ]

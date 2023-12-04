@@ -6,6 +6,7 @@
 /**/*/npm-debug.log
 /**/*/.dockerignore
 /**/*/Dockerfile
+/**/*/.next
 
 # Directories
 /**/*/node_modules

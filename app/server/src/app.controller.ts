@@ -33,7 +33,7 @@ export class AppController {
                 email: generateRandomString(20),
             })
             .then(() => console.log('created'));
-        // .catch((err) => console.error(err, 'error'));
+            .catch((err) => console.error(err, 'error'));
         return this.appService.getHello();
     }
 }
