@@ -8,7 +8,6 @@ import {
 import { FirebaseAdmin, InjectFirebaseAdmin } from 'nestjs-firebase';
 
 @Injectable()
-@Injectable()
 export class TestingFirebaseGuard implements CanActivate {
     private readonly logger = new Logger(TestingFirebaseGuard.name);
 

@@ -35,6 +35,7 @@ services:
       target: server
     ports:
       - "4000:4000"
+      - "4983:4983"
     environment:
       DATABASE_URL: "postgres://postgres:94justchat@doodlebattle-db:5432/doodle_battle"
     depends_on:
